@@ -2,7 +2,7 @@
 require 'sinatra'
 require 'datamapper'
 
-datamapper::setup(:default, "sqlite3://#{Dir.pwd}/recall.db")
+Datamapper::setup(:default,"sqlite3://#{Dir.pwd}/recall.db")
 class Note
   include DataMapper::Resource
   property :id, Serial
