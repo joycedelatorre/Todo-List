@@ -1,8 +1,9 @@
-# require 'rubygems'
+require 'rubygems'
 require 'sinatra'
-require 'datamapper'
+require 'data_mapper'
 
-Datamapper::setup(:default,"sqlite3://#{Dir.pwd}/recall.db")
+DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/recall.db")
+
 class Note
   include DataMapper::Resource
   property :id, Serial
