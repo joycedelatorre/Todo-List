@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper'
+SITE_TITLE ="Recall"
+SITE_DESCRIPTION = "'cause you're too busy to remember"
 
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/recall.db")
 
@@ -33,6 +35,11 @@ post '/' do
   n.updated_at = Time.now
   n.save
   redirect '/'
+end
+
+get '/rss.xml' do
+  @notes = Note.all :order => :id.desc
+  builder :rss
 end
 
 get '/:id' do
@@ -68,5 +75,8 @@ get '/:id/complete' do
   n.save
   redirect '/'
 end
+
+
+
 
 
